@@ -1,0 +1,15 @@
+body {
+    background-color: rgb(216, 216, 216);
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    gap: 100px;
+    margin-top: 50px;
+}
+.fondo-seccion {
+    padding: 20px;
+    border-radius: 10px;
+    min-height: 200px; /* Para asegurar que siempre se vea */
+}

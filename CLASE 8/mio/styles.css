@@ -1,0 +1,92 @@
+body{
+    background-color: rgb(228, 228, 228);
+}
+
+h1{
+    text-align: center;
+}
+.enlaces{
+    text-align: center;
+}
+
+.container {
+    margin-top: 30px;
+    display: flex; 
+    justify-content: center;
+    gap: 300px;
+    padding: 20px;
+}
+
+.form-div, .div-perfil {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 8px 8px 8px rgba(0,0,0,0.1);
+    width: 400px;
+}
+
+.imagen-container {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid #007bff;
+    margin: 0 auto 15px; 
+}
+
+#perfil-imagen {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+}
+
+.fondo-perfil {
+    text-align: center;
+    padding: 20px;
+    border-radius: 8px;
+    min-height: 250px;
+}
+
+.inputs{
+    width: 100%;
+}
+input{
+    width: 100%;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+.inputs label {
+    display: block;     
+    margin: 8px;
+    font-size: 25px;  
+    color: #333;
+}
+.inputs select {
+    width: 100%;         
+    padding: 15px;    
+    font-size: 16px;    
+    border: 2px solid #ccc; 
+    border-radius: 8px;  
+    box-sizing: border-box; 
+    background-color: #f9f9f9; 
+}
+
+#boton-generar {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+#boton-generar:hover {
+    background-color: #0056b3;
+}
+#perfil-nombre{
+    font-size: 30px;
+}
+#perfil-profesion{
+    font-size: 30px;
+}

@@ -1,0 +1,25 @@
+body{
+    background-color: blanchedalmond;    
+}
+#texto{
+    color: azure;
+    background-color: blue;
+    align-items: center;
+    width: 400px;
+    border: 2px solid black;
+}
+#button{
+   background-color: blue;
+   color: azure;
+}
+.estilos-texto{
+    background-color: rgb(5, 4, 4) !important;
+    color: azure !important;
+    font-size: 20px;
+     border: 2px solid grey !important;
+}
+.estilos-button{
+    background-color: black !important;
+    color: azure !important;
+    font-size: 20px;
+}

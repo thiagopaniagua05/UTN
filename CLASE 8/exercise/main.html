@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header><h1>Exercise 1</h1></header>
+    <main>
+        <section>
+            <form action="post">
+                <label for="titulo">Titulo:</label><br>
+                <input type="text" id="titulo" name="titulo"><br>
+                <label for="descripcion">Descripcion:</label><br>
+                <input type="text" id="descripcion" name="descripcion"><br>
+                <label for="url-imagen">URL de la imagen</label><br>
+                <input type="url" id="url-imagen" placeholder="Ej: https://.../me1.png"><br>
+                <label for="seccion">Seccion:</label><br>
+                <select id="selector"><br>
+                    <option value="Noticias">Noticias</option>
+                    <option value="Deportes">Deportes</option>
+                    <option value="Gaming">Gaming</option>
+                </select><br>
+                <button type="button" id="boton-generar">Generar</button>
+            </form>
+        </section>
+        <section>
+            <div class="div-seccion">
+                <h2>Seccion</h2>
+                <div id="seccion-fondo" class="fondo-seccion">     
+                    <div class="imagen-container">
+                        <img id="imagen" src="placeholder.png" alt="Imagen de seccion">
+                    </div>
+                    <div class="texto-container">
+                        <h3 id="seccion-nombre">Nombre de la seccion</h3>
+                        <p id="seccion-descripcion">Tu descripcion</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
