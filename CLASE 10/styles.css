@@ -1,0 +1,164 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Fondo de pantalla completa */
+body {
+    background-image: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1920');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Contenedor centrado */
+.container {
+    width: 100%;
+    max-width: 450px;
+}
+
+/* Estilo del Formulario y la Card (Efecto Transparente) */
+form, .card {
+    background-color: rgba(43, 43, 43, 0.85); /* Blanco con 85% de opacidad */
+    backdrop-filter: blur(10px); /* Desenfoque de fondo estilo vidrio */
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(18, 18, 18, 0.4);
+}
+
+h2 {
+    color: aliceblue;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Campos de entrada */
+.grupo-campo {
+    margin-bottom: 18px;
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-size: 14px;
+    color: aliceblue;
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
+input[type="text"],
+input[type="email"],
+select {
+    padding: 10px;
+    border: 1px solid #0e0e0e;
+    border-radius: 8px;
+    font-size: 15px;
+    background-color: rgba(165, 165, 165, 0.7);
+    outline: none;
+    transition: all 0.3s;
+}
+
+input:focus, select:focus {
+    border-color: #5eacff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+    background-color: aliceblue;
+}
+
+/* Checkbox */
+.grupo-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.grupo-checkbox label {
+    margin-bottom: 0;
+    cursor: pointer;
+}
+
+/* Botón */
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: #005fc4;
+    color: rgb(163, 163, 163);
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+button:hover {
+    background-color: #007bff;
+    color: aliceblue;
+}
+
+/* Estilos específicos de la Card de resultado */
+.card {
+    text-align: center;
+    animation: aparecer 0.5s ease forward;
+}
+
+.card hr {
+    margin: 15px 0;
+    border: 0;
+    border-top: 1px solid #ccc;
+}
+
+.card p {
+    margin-bottom: 12px;
+    font-size: 16px;
+    color: #444;
+    text-align: left;
+}
+
+.badge {
+    background-color: #28a745;
+    color: white;
+    padding: 3px 8px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.icono-check {
+    font-size: 50px;
+    color: #28a745;
+    margin-top: 15px;
+}
+
+/* CLASE CRUCIAL PARA JAVASCRIPT: Oculta elementos */
+.oculto {
+    display: none !important;
+}
+
+/* Animación suave para cuando aparezca la card */
+@keyframes aparecer {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+/* Fuerza a que TODO el texto dentro de la card sea blanco */
+.card, 
+.card h2, 
+.card p, 
+.card p strong, 
+.card p span {
+    color: #ffffff !important;
+}
+
+/* Mantenemos el texto del botón verde con letras blancas para que no se rompa */
+.card .badge {
+    color: #ffffff !important;
+    background-color: #28a745;
+}
