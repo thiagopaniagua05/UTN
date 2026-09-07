@@ -1,33 +1,58 @@
-/*Ejercicio 1: Procesador de Calificaciones y Reporte HTML (ejercicio01.js)
+const ventas = [
+  { id: 'V101', producto: 'Teclado Mecánico', monto: 45000, estado: 'completada' },
+  { id: 'V102', producto: 'Mouse Gamer', monto: 18000, estado: 'cancelada' },
+  { id: 'V103', producto: 'Monitor 24"', monto: 160000, estado: 'completada' },
+  { id: 'V104', producto: 'Placa de Video', monto: 520000, estado: 'completada' },
+  { id: 'V105', producto: 'Auriculares', monto: 35000, estado: 'cancelada' }
+];
+// 1
+const ventasExitosas = ventas.filter(p => p.estado === "completada");
+console.log(ventasExitosas);
 
-Objetivo: Practicar transformación de objetos con .map(), operador spread (...), 
-creación de marcado HTML y evitar el uso incorrecto de .map().
+//2
+console.log("PUNTO 2");
+const ventasComisiones = ventasExitosas.map(v =>{
+    const comisionMercado = v.monto * 0.13;
+    return {
+        ...v,
+        comisionMercado: comisionMercado
+    };
+});
+console.log(ventasComisiones);
 
-Consigna:Dado el siguiente arreglo de alumnos:JavaScript
 
-const estudiantes = [
-  { id: 1, nombre: 'Lucas', parcial1: 4, parcial2: 6 },
-  { id: 2, nombre: 'Mariana', parcial1: 8, parcial2: 9 },
-  { id: 3, nombre: 'Gonzalo', parcial1: 2, parcial2: 3 },
-  { id: 4, nombre: 'Florencia', parcial1: 7, parcial2: 5 }
+
+//ejercicio 2
+
+const componentes = [
+  { sku: 501, nombre: 'Placa Madre B550', precioUSD: 120, destacado: true },
+  { sku: 502, nombre: 'Procesador Ryzen 5', precioUSD: 180, destacado: false },
+  { sku: 503, nombre: 'Memoria RAM 16GB', precioUSD: 45, destacado: true },
+  { sku: 504, nombre: 'Fuente 650W Gold', precioUSD: 90, destacado: false }
 ];
 
-Utilizando .map() y el operador Spread (), generá un nuevo arreglo 
-"estudiantesConPromedio" donde cada objeto conserve sus propiedades originales
-e incorpore:
-- promedio: Promedio numérico entre parcial1 y parcial2.
-- condicion: String que valga 'APROBADO' si el promedio es mayor o igual 6
-            o 'RECUPERA' si es menor.
- A partir del arreglo generado, utilizá .map() y .join() para crear una cadena
- de texto que genere una lista HTML con el formato:
- <li>Lucas - Promedio: 5 (RECUPERA)</li>
- Imprimí el HTML resultante por consola y verificá que el arreglo estudiantes
- original no haya sufrido ninguna mutación.
-*/
+const componentesPesificados = componentes.map(c =>{
+    const precioARS = c.precioUSD * 1200;
+    const etiqueta = c.destacado == true ? "DESTACADO" : "NORMAL";
+    
+    return{
+        ...c, precioARS: precioARS, etiqueta: etiqueta
+    };
+});
+//otra manera
+const componentesPesificados2 = componentes.map(c => ({
+    ...c,
+    precioARS: c.precioUSD *1200,
+    etiqueta: c.destacado == true ? "DESTACADO" : "NORMAL"
+}));
+console.table(componentesPesificados);
+console.table(componentesPesificados2);
 
-const estudiantes = [
-  { id: 1, nombre: 'Lucas', parcial1: 4, parcial2: 6 },
-  { id: 2, nombre: 'Mariana', parcial1: 8, parcial2: 9 },
-  { id: 3, nombre: 'Gonzalo', parcial1: 2, parcial2: 3 },
-  { id: 4, nombre: 'Florencia', parcial1: 7, parcial2: 5 }
-];
+const componentesHTML = componentesPesificados.map(componente => `<div class="card">
+  <h3>${componente.nombre}</h3>
+  <p>${componente.precioARS}</p>
+  <span>${componente.etiqueta}</span>
+</div>`)
+.join('\n');
+console.log(componentesHTML);
+
