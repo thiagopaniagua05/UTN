@@ -1,28 +1,3 @@
-const fs = require('fs/promises');
-
-function contarAprobados(rutaArchivo) {
-  fs.readFile(rutaArchivo, 'utf-8')
-    .then(contenido => contenido.split('\n'))
-    .then(lineas => lineas.map(linea => Number(linea.trim())))
-    .then(notas => notas.filter(nota => nota >= 6))
-    .then(aprobados => console.log(`Hay ${aprobados.length} aprobados`))
-    .catch(err => console.error('Error al leer el archivo:', err.message));
-}
-
-
-const fs = require('fs/promises');
-
-async function contarAprobados(rutaArchivo) {
-  try {
-    const contenido = await fs.readFile(rutaArchivo, 'utf-8');
-    const notas = contenido.split('\n').map(linea => Number(linea.trim()));
-    const aprobados = notas.filter(nota => nota >= 6);
-    console.log(`Hay ${aprobados.length} aprobados`);
-  } catch (err) {
-    console.error('Error al leer el archivo:', err.message);
-  }
-}
-
 /*
 
 Ejercicio 1: fetch con async/await
@@ -66,3 +41,75 @@ Si hay error, imprimí "No se pudo leer el archivo" y cortá la función.
 Si sale bien, el archivo tiene un nombre por línea. Imprimí el array con todos los nombres en mayúsculas.
 
 */
+
+const fs = require('fs');
+
+function mostrarMayusculas(rutaArchivo) {
+  fs.readFile(rutaArchivo, 'utf-8', (err, data) => {
+    if (err) {
+      console.error('No se pudo leer el archivo:', err.message);
+      return;
+    }
+    const nombres = data.split('\n').map(nombre => nombre.trim().toUpperCase());
+    console.log('Nombres en mayúsculas:', nombres);
+  });   // ← cierra el callback } y el readFile )
+}
+
+
+/*
+
+Ejercicio 3: refactorización
+
+Pasá esta función a async/await con try...catch:
+
+const fs = require('fs/promises');
+
+function sumarPrecios(ruta) {
+  fs.readFile(ruta, 'utf-8')
+    .then(texto => texto.split('\n'))
+    .then(lineas => lineas.map(l => Number(l)))
+    .then(precios => precios.reduce((acc, p) => acc + p, 0))
+    .then(total => console.log('Total:', total))
+    .catch(err => console.error('Error:', err.message));
+}
+
+*/
+
+const fs = require('fs/promises');
+
+async function sumarPrecios(ruta) {
+  try {
+    const texto = await fs.readFile(ruta, 'utf-8');
+    const lineas = texto.split('\n');
+    const precios = lineas.map(l => Number(l));
+    const total = precios.reduce((acc, p) => acc + p, 0);
+    console.log('Total:', total);
+  } catch (err) {
+    console.error('Error:', err.message);
+  }
+}
+
+
+
+/*
+Otro mas
+function cargarUsuarios(url) {
+  fetch(url)
+    .then(res => res.json())
+    .then(usuarios => usuarios.map(u => u.email))
+    .then(emails => console.log(emails))
+    .catch(err => console.error('Error:', err.message));
+}
+
+*/
+
+async function cargarUsuarios(url) {
+  try {
+    const res = await fetch(url);
+    const usuarios = await res.json();
+    const emails = usuarios.map(u => u.email);
+    console.log(emails);
+  } catch (err) {
+    console.error('Error:', err.message);
+  }
+}
