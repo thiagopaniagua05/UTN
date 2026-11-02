@@ -45,3 +45,13 @@ function totalPendiente() {
   return pedidosPendientes().reduce((acumulado, pedido) => acumulado + pedido.total, 0);
 }
 
+function totalPorCliente() {
+  return pedidosPagados().reduce((acumulado, pedido) => {
+    if (acumulado[pedido.cliente] === undefined) {
+      acumulado[pedido.cliente] = pedido.total;
+    } else {
+      acumulado[pedido.cliente] = acumulado[pedido.cliente] + pedido.total;
+    }
+    return acumulado;
+  }, {});
+}
