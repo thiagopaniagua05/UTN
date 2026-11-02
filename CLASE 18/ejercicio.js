@@ -18,3 +18,30 @@ function clientesUnicos() {
 function totalPagado() {
   return pedidosPagados().reduce((acumulado, pedido) => acumulado + pedido.total, 0);
 }
+
+
+function pedidoMasCaro() {
+  return pedidos.reduce((masCaro, pedido) => {
+    if (pedido.total > masCaro.total) {
+      return pedido;
+    }
+    return masCaro;
+  });
+}
+
+function pedidoMasBajo() {
+  return pedidos.reduce((masBajo, pedido) => {
+    if (pedido.total < masBajo.total) {
+      return pedido;
+    }
+    return masBajo;
+  });
+}
+
+function pedidosPendientes() {
+  return pedidos.filter(pedido => pedido.estado === 'pendiente');
+}
+function totalPendiente() {
+  return pedidosPendientes().reduce((acumulado, pedido) => acumulado + pedido.total, 0);
+}
+
