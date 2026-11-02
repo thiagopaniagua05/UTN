@@ -6,3 +6,15 @@ const pedidos = [
   { id: 5, cliente: 'Luis', total: 9700, estado: 'pagado' },
 ];
 
+function pedidosPagados() {
+  return pedidos.filter(pedido => pedido.estado === 'pagado');
+}
+
+function clientesUnicos() {
+  const nombres = pedidos.map(pedido => pedido.cliente);
+  return [...new Set(nombres)];
+}
+
+function totalPagado() {
+  return pedidosPagados().reduce((acumulado, pedido) => acumulado + pedido.total, 0);
+}
