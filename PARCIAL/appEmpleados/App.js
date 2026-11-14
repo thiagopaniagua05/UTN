@@ -93,6 +93,7 @@ export default function App() {
 
       <View style={styles.encabezado}>
         <Text style={styles.titulo}>Empleados</Text>
+        <Text>Activos: {empleados.filter(x => x.activo === 1).length} de {empleados.length} empleados</Text>
       </View>
 
       {cargando ? (
