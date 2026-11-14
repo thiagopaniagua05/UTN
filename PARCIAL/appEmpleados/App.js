@@ -43,6 +43,7 @@ export default function App() {
   const [empleados, setEmpleados] = useState([]);
   const [cargando, setCargando] = useState(true);
   const [error, setError] = useState(null);
+  const [filtroArea, setFiltroArea] = useState('Todos');
 
   const consultarEmpleados = () => {
     setCargando(true);
@@ -83,9 +84,14 @@ export default function App() {
           <Text style={styles.areaTexto}>{item.area}</Text>
         </View>
         <Text style={styles.nombreTexto}>{item.nombre}</Text>
+        <Text style={[styles.estado, item.activo === 1 ? styles.activo : styles.inactivo]}>
+          {item.activo === 1 ? 'ACTIVO' : 'INACTIVO'}
+        </Text>
       </View>
     );
   };
+
+const filtrarEmpleados = empleados.filter(a => filtroArea === 'Todos' || a.area === filtroArea);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -95,6 +101,19 @@ export default function App() {
         <Text style={styles.titulo}>Empleados</Text>
         <Text>Activos: {empleados.filter(x => x.activo === 1).length} de {empleados.length} empleados</Text>
       </View>
+
+
+<View style={styles.filaBotones}>
+  <TouchableOpacity style={styles.botonFiltro} onPress={() => setFiltroArea('Todos')}>
+    <Text style={styles.textoBoton}>Todos</Text>
+  </TouchableOpacity>
+  <TouchableOpacity style={styles.botonFiltro} onPress={() => setFiltroArea('Sistemas')}>
+    <Text style={styles.textoBoton}>Sistemas</Text>
+  </TouchableOpacity>
+  <TouchableOpacity style={styles.botonFiltro} onPress={() => setFiltroArea('Ventas')}>
+    <Text style={styles.textoBoton}>Ventas</Text>
+  </TouchableOpacity>
+</View>
 
       {cargando ? (
         <View style={styles.centro}>
@@ -110,7 +129,7 @@ export default function App() {
         </View>
       ) : (
         <FlatList
-          data={empleados}
+          data={filtrarEmpleados}
           keyExtractor={(item) => item.id.toString()}
           renderItem={renderEmpleado}
           contentContainerStyle={styles.lista}
@@ -140,6 +159,17 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#102a43',
   },
+  filaBotones: {
+  flexDirection: 'row',
+  justifyContent: 'space-around',
+  paddingVertical: 12,
+},
+botonFiltro: {
+  backgroundColor: '#3182ce',
+  paddingVertical: 8,
+  paddingHorizontal: 16,
+  borderRadius: 8,
+},
   lista: {
     padding: 16,
   },
@@ -175,6 +205,23 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: '#243b53',
   },
+ estado: {
+  alignSelf: 'flex-start',
+  marginTop: 8,
+  paddingVertical: 4,
+  paddingHorizontal: 10,
+  borderRadius: 6,
+  fontSize: 12,
+  fontWeight: 'bold',
+},
+activo: {
+  backgroundColor: '#c6f6d5',
+  color: '#22543d',
+},
+inactivo: {
+  backgroundColor: '#e2e8f0',
+  color: '#4a5568',
+},
   centro: {
     flex: 1,
     justifyContent: 'center',
