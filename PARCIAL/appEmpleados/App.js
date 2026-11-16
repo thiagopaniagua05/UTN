@@ -84,6 +84,9 @@ export default function App() {
           <Text style={styles.areaTexto}>{item.area}</Text>
         </View>
         <Text style={styles.nombreTexto}>{item.nombre}</Text>
+        <Text style={[styles.sueldo, item.sueldo > 800000 && styles.sueldoAlto]}>
+          ${item.sueldo.toLocaleString('es-AR')}
+        </Text>
         <Text style={[styles.estado, item.activo === 1 ? styles.activo : styles.inactivo]}>
           {item.activo === 1 ? 'ACTIVO' : 'INACTIVO'}
         </Text>
@@ -159,6 +162,16 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#102a43',
   },
+  sueldo:{
+    fontSize: 14,
+    color: '#334e68',
+    marginTop: 4,
+  },
+  sueldoAlto: {
+    color: '#2f855a',
+    fontWeight: 'bold',
+  }
+  ,
   filaBotones: {
   flexDirection: 'row',
   justifyContent: 'space-around',
